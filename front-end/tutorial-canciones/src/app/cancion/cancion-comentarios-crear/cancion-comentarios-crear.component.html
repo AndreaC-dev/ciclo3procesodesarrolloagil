@@ -1,0 +1,29 @@
+<div class="card px-4 py-4">
+  <form class="" [formGroup]="cancionComentarioForm" (ngSubmit)="createComentario(cancionComentarioForm.value)">
+    <div class="row px-4 ">
+
+      <textarea id="comentario" class="form-control" rows="3" formControlName="comentario"
+        placeholder="Agrega un comentario..."></textarea>
+
+      <div class="alert alert-danger"
+        *ngIf="cancionComentarioForm.get('comentario')?.hasError('minlength') ">
+        Comentario debe tener minimo 5 caracteres
+      </div>
+      <div class="alert alert-danger"
+        *ngIf="cancionComentarioForm.get('comentario')?.hasError('maxlength') ">
+        Comentario debe tener maximo 1000 caracteres
+      </div>
+      <div class="alert alert-danger"
+        *ngIf="cancionComentarioForm.get('comentario')?.hasError('required') && cancionComentarioForm.get('comentario')?.touched">
+        Comentario es requerido
+      </div>
+
+    </div>
+    <div class="row mb-2 py-2">
+      <div class="col-12 text-end">
+        <button type="submit" class="btn btn-success" [disabled]="!cancionComentarioForm.valid">Comentar</button>
+        <button type="reset" class="btn btn-danger ml-3 mr-3">Limpiar</button>
+      </div>
+    </div>
+  </form>
+</div>

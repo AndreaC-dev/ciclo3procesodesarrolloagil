@@ -1,0 +1,57 @@
+<app-header></app-header>
+<div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 offset-lg-2 offset-md-1 float-md-center">
+  <div class="container my-4">
+    <div class="card my-4">
+      <div class="card-header card_color">
+      <div class="row">
+        <div class="col-10 ">
+          <h1 class="fs-4 fw-bold">Canciones</h1>
+        </div>
+        <div class="col-2 text-center">
+          <button type="button" class="my-1 btn btn-outline-primary btn-circle icon" aria-label="Add-song"
+            (click)="irCrearCancion()"><em class="bi bi-plus-lg"></em></button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+    <div class="input-group my-2">
+      <input #busqueda type="search" class="form-control" placeholder="Buscar canciones" aria-label="Search"
+        (keyup)="buscarCancion(busqueda.value)">
+    </div>
+  <div>
+      <table class="table table-bordered table-striped table-hover mb-0" aria-label="song-list">
+        <thead class="thead">
+          <tr>
+            <th scope="col">Canción</th>
+            <th scope="col">Duración</th>
+            <th scope="col">Intérprete</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="mostrarCanciones != undefined">
+          <tr *ngFor="let cancion of mostrarCanciones | slice: pageSize | slice: 0:itemsPerPage; index as i"
+            (click)="onSelect(cancion, i)" [ngClass]="{'selected': i === indiceSeleccionado}">
+            <td>{{cancion.titulo}}</td>
+            <td>{{cancion.minutos | number:'2.0-0' }}:{{cancion.segundos | number:'2.0-0'}}</td>
+            <td>{{cancion.interprete}}</td>
+            <td>
+              <button title="Compartir" *ngIf="cancion.usuario == userId" type="button" class="my-1 btn btn-outline-primary btn-circle" (click)="irCompartir(cancion, i)"><i class="bi bi-share-fill"></i></button>
+              <button title="Compartido" *ngIf="cancion.usuario != userId" disabled type="button" class="my-1 btn btn-outline-primary btn-circle"><i class="bi bi-arrow-up-right"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pt-4 pagination">
+      <ngb-pagination class="inline-pagination" *ngIf="mostrarCanciones != undefined" [collectionSize]="mostrarCanciones.length" [(page)]="currentPage"
+        [pageSize]="itemsPerPage" (pageChange)="onPageChange(currentPage)">
+        <ng-template ngbPaginationNumber let-page>{{ page }}</ng-template>
+      </ngb-pagination>
+    </div>
+  </div>
+</div>
+<div>
+      <app-cancion-detail (deleteCancion)="eliminarCancion()" [cancion]="cancionSeleccionada"></app-cancion-detail>
+    </div>
+  </div>
+</div>

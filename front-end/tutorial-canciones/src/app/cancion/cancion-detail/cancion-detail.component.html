@@ -1,0 +1,44 @@
+<div class="card">
+  <div class="card-body card_color">
+    <div class=" row ">
+      <div class="col-5">
+        <h2 class="card-title">{{cancion?.titulo}}</h2>
+      </div>
+        <div class="col-7 icon_end">
+        <button *ngIf="cancion && cancion.usuario == userId" type="button" class="btn btn-outline-success me-1 me-2 icon" (click)="goToEdit()" title="Editar canción"><em class="bi bi-pencil-square"></em></button>
+        <button *ngIf="cancion && cancion.usuario == userId" type="button" class="btn btn-outline-danger me-1 icon" (click)="eliminarCancion()" title="Eliminar canción"><em class="bi bi-trash-fill"></em></button>
+        <button *ngIf="cancion && cancion.usuario == userId" type="button" class="btn btn-outline-primary me-1 me-2 icon" (click)="irCompartir()" title="Compartir canción"><i class="bi bi-share-fill"></i></button>
+      </div>
+      <p class="my-0"><span class="fw-bold">Duración: </span> <span class="text-capitalize">{{cancion?.minutos |
+          number:'2.0-0'}}:{{cancion?.segundos | number:'2.0-0'}}</span></p>
+      <p class="my-0"><span class="fw-bold">Intérpretes: </span> <span
+          class="text-capitalize">{{cancion?.interprete}}</span></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 mt-3 mb-2 ms-2">
+      <h3>Álbumes</h3>
+    </div>
+  </div>
+  <div class="col-12">
+    <table class="table table-striped" aria-label="album-list">
+      <thead class="thead">
+        <tr>
+          <th scope="col" class="text-center">Título</th>
+          <th scope="col" class="text-center">Año</th>
+          <th scope="col" class="text-center">Medio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let album of cancion?.albumes">
+          <td>{{album?.titulo}}</td>
+          <td class="text-center">{{album?.anio}}</td>
+          <td>{{album?.medio?.llave}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="p-3">
+    <app-cancion-comentario-consulta [cancionConsultar]="cancion" ></app-cancion-comentario-consulta>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+/* You can add global styles to this file, and also import other style files */
+tbody {
+  text-align: center;
+}
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+.thead {
+  background-color: #0b5886;
+  color: white;
+  text-align: center;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+.page-item.active .page-link{
+  background-color: #0b5886;
+}
+
+.card_color {
+  background-color: #0b5886;
+  color: white;
+}
+.icon{
+  color: white;
+  border-color: white;
+  background-color: #0b5886;
+}
+.icon_end {
+  text-align: end;
+}
+.middle{
+  font-style: italic;
+}
+.logo{width:40px;
+  height:40px }
+
+.footer{
+  color:#0b5886;
+  text-align: center;
+  font-size: small;
+  height: 1px;
+  border-top: solid #ACC0D8 1px;
+}

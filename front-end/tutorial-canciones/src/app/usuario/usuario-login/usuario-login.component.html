@@ -1,0 +1,46 @@
+<div class="container align-items-center py-4">
+  <div class="row align-items-center">
+    <div class="col-xs-10 col-lg-5 card px-2 ">
+      <div class="card-body text-center">
+        <p class="my-2 info_app">El sitio para almacenar la información de su colección de música. En este podrá buscar
+          de manera más facil las canciones que tiene en su fonoteca y que quiere escuchar ...</p>
+      </div>
+    </div>
+    <div class="col-xs-10 col-lg-5 container card ">
+      <div class="row card-body">
+        <div class="my-2 row">
+          <h4 class="text-center">Ingreso</h4>
+          <br/>
+          <hr class="line"/>
+        </div>
+        <div *ngIf="error">
+          <div class="alert alert-danger" role="alert">
+            Usuario o contraseña incorrectos
+          </div>
+        </div>
+        <div class="mb-3 row login_position">
+          <label for="staticEmail" class="col-lg-12 col-form-label">Usuario</label>
+          <div class="col-lg-12  ">
+            <input #usuario type="text" class="form-control" placeholder="ejemplo@ejemplo.com">
+          </div>
+        </div>
+        <div class="mb-3 row login_position">
+          <label for="inputPassword" class="col-lg-12 col-form-label">Contraseña</label>
+          <div class="col-lg-12">
+            <input #contrasena type="password" class="form-control" placeholder="*********">
+          </div>
+        </div>
+        <div class="col-12 mt-3">
+          <button (click)="onLogInUsuario(usuario.value, contrasena.value)" type="button"
+            class="btn btn-primary col-5 botom">Ingresar</button>
+            <br/>
+            <hr class="line"/>
+        </div>
+        <div class="col-12 mt-2 login_position">
+          <p>¿No tienes cuenta? </p>
+          <a  class="btn btn-primary col-5 botom"  href="/signup">Regístrate</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

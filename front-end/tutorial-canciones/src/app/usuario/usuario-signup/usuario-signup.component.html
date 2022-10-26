@@ -1,0 +1,86 @@
+<div class="container align-items-center py-4">
+  <div class="row align-items-center">
+    <div class="col-xs-10 col-lg-5 card px-2 ">
+      <div class="card-body text-center">
+        <p class="my-2 info_app">El sitio para almacenar la información de su colección de música. En este podrá buscar
+          de manera más facil las canciones que tiene en su fonoteca y que quiere escuchar ...</p>
+      </div>
+    </div>
+    <div class="col-xs-10 col-lg-5 container card">
+      <div class="row card-body">
+        <div class="my-2 row">
+          <h4 class="text-center">Registro</h4>
+          <br />
+          <hr class="line" />
+        </div>
+        <form [formGroup]="usuarioForm" (ngSubmit)="registrarUsuario()">
+          <div class="form-group">
+            <div class="mb-3 row login_position">
+              <label for="nombre" class="col-lg-12 col-form-label">Usuario</label>
+              <div class="col-lg-12  ">
+                <input formControlName="nombre" type="text" class="form-control" placeholder="ejemplo@ejemplo.com">
+              </div>
+            </div>
+            <div class="alert alert-danger my-3"
+              *ngIf="usuarioForm.get('nombre')?.hasError('required') && usuarioForm.get('nombre')?.touched">
+              Debe ingresar un usuario para registrarse
+            </div>
+            <div class="alert alert-danger my-3" *ngIf="usuarioForm.get('nombre')?.hasError('maxlength')">
+              El usuario no debe exceder los 50 carácteres
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="mb-3 row login_position">
+              <label for="password" class="col-lg-12 col-form-label">Contraseña</label>
+              <div class="col-lg-12">
+                <input formControlName="password" type="password" class="form-control" placeholder="*********">
+              </div>
+            </div>
+            <div class="alert alert-danger my-3"
+              *ngIf="usuarioForm.get('password')?.hasError('required') && usuarioForm.get('password')?.touched">
+              Debe ingresar una contraseña para registrarse
+            </div>
+            <div class="alert alert-danger my-3" *ngIf="usuarioForm.get('password')?.hasError('maxlength')">
+              La contraseña no debe exceder los 50 carácteres
+            </div>
+            <div class="alert alert-danger my-3" *ngIf="usuarioForm.get('password')?.hasError('minlength')">
+              La contraseña debe tener más de 4 carácteres
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="mb-3 row login_position">
+              <label for="confirmPassword" class="col-lg-12 col-form-label">Confirmar contraseña</label>
+              <div class="col-lg-12">
+                <input formControlName="confirmPassword" type="password" class="form-control" placeholder="*********">
+              </div>
+            </div>
+            <div class="alert alert-danger my-3"
+              *ngIf="usuarioForm.get('confirmPassword')?.hasError('required') && usuarioForm.get('confirmPassword')?.touched">
+              Debe ingresar una contraseña para registrarse
+            </div>
+            <div class="alert alert-danger my-3" *ngIf="usuarioForm.get('confirmPassword')?.hasError('maxlength')">
+              La contraseña no debe exceder los 50 carácteres
+            </div>
+            <div class="alert alert-danger my-3" *ngIf="usuarioForm.get('confirmPassword')?.hasError('minlength')">
+              La contraseña debe tener más de 4 carácteres
+            </div>
+            <div class="alert alert-danger my-3"
+              *ngIf="usuarioForm.get('confirmPassword')?.value !== usuarioForm.get('password')?.value">
+              Las contraseñas no coinciden
+            </div>
+          </div>
+          <div class="col-12 my-3 without_pading">
+            <button type="submit" class="btn btn-primary col-5 botom"
+              [disabled]="!usuarioForm.valid || usuarioForm.get('confirmPassword')?.value !== usuarioForm.get('password')?.value">Regístrate</button>
+              <br/>
+              <hr class="line"/>
+           </div>
+          <div class="col-12 my-3 without_pading">
+            <p>¿Ya tienes cuenta? </p>
+            <a class="btn btn-primary col-5 botom" href="/">Ingresa</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="container p-4">
+  <div class="card" *ngFor="let c of orderBy('creado_el')">
+    <div class="card-header">
+      <div class="row">
+      <div class="col-6 text-start">
+        {{c.nombreUsuario}}
+      </div>
+      <div class="col-6 text-end">
+        {{ c.creado_el |date:"shortDate"}}
+      </div>
+    </div>
+  </div>
+    <div class="card-body" >
+      <td>
+        <dd>{{c.texto}}</dd>
+      </td>
+    </div>
+  </div>
+</div>
+

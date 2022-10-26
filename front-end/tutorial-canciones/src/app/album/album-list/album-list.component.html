@@ -1,0 +1,63 @@
+<script src="album-list.component.ts"></script>
+<app-header></app-header>
+<div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 offset-lg-2 offset-md-1 float-md-center">
+<div class="container my-4">
+  <div class="card my-4">
+    <div class="card-header card_color">
+      <div class="row">
+        <div class="col-10">
+          <label class="fs-4 fw-bold">Álbumes</label>
+        </div>
+        <div class="col-2 text-center">
+          <button type="button" class="my-1 btn btn-outline-primary btn-circle icon" (click)="irCrearAlbum()"><i
+              class="bi bi-plus-lg"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="input-group my-2">
+        <input #busqueda type="search" class="form-control" placeholder="Buscar álbumes" aria-label="Search"
+          (keyup)="buscarAlbum(busqueda.value)">
+      </div>
+      <div>
+        <table class="table table-bordered table-striped table-hover mb-0" aria-describedby="colecName">
+          <thead class="thead">
+            <tr>
+              <th scope="col">Título</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Año</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody class="tbody">
+            <tr *ngFor="let album of mostrarAlbumes | slice: pageSize | slice: 0:itemsPerPage; index as i "
+              (click)="onSelect(album, i)" [ngClass]="{'selected': i === indiceSeleccionado}">
+              <td>{{album.titulo}}</td>
+              <td> {{album.descripcion}}</td>
+              <td>{{album.anio}}</td>
+              <td>
+                <button title="Compartir" *ngIf="album.usuario == userId" type="button" class="my-1 btn btn-outline-primary btn-circle" (click)="irCompartir(album, i)"><i class="bi bi-share-fill"></i></button>
+                <button title="Compartido" *ngIf="album.usuario != userId" disabled type="button" class="my-1 btn btn-outline-primary btn-circle"><i class="bi bi-arrow-up-right"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pt-4 pagination">
+          <ngb-pagination class="inline-pagination" *ngIf="mostrarAlbumes != undefined" [collectionSize]="mostrarAlbumes.length" [(page)]="currentPage"
+            [pageSize]="itemsPerPage" (pageChange)="onPageChange(currentPage)">
+            <ng-template ngbPaginationNumber let-page>{{ page }}</ng-template>
+          </ngb-pagination>
+      </div>
+    </div>
+  </div>
+  <div>
+    <app-album-detail (deleteAlbum)="eliminarAlbum()" [album]="albumSeleccionado"></app-album-detail>
+  </div>
+  <div>
+  <app-comentar-album [album]="albumSeleccionado"></app-comentar-album>
+  <app-consultar-comentario-album [comentariosAlbumes]="comentariosAlbumes"></app-consultar-comentario-album>
+
+</div>
+</div>
+</div>

@@ -1,0 +1,29 @@
+<div class="sidebar">
+  <a class="navbar-brand">Tutorial canciones</a>
+  <div class="row">
+  <div class="header acerca">
+    El sitio para almacenar la información de su colección de música. En este podrá buscar
+              de manera más facil las canciones que tiene en su fonoteca y que quiere escuchar ...
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <a class="nav-link" (click)="goTo('album')">Álbumes</a>
+    </div>
+    <div class="col text-center icon_end">
+      <button type="button" class="my-1 btn btn-outline-primary btn-circle icon" (click)="goTo('create_album')"><i
+          class="bi bi-plus-lg"></i></button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <a class="nav-link" (click)="goTo('cancion')">Canciones</a>
+    </div>
+    <div class="col text-center icon_end">
+      <button type="button" class="my-1 btn btn-outline-primary btn-circle icon" (click)="goTo('create_cancion')"><i
+          class="bi bi-plus-lg"></i></button>
+    </div>
+  </div>
+  <a class="nav-link" (click)="goTo('logIn')">Salir</a>
+</div>
+

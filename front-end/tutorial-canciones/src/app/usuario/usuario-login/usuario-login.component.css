@@ -1,0 +1,16 @@
+.info_app {
+  font-size: 1.5rem;
+}
+
+.line{
+	border-top: 1px solid #DDEEFF;
+}
+
+.login_position{
+  display: grid;
+}
+
+.botom {
+  background-color: #0b5886;
+  color: white;
+}

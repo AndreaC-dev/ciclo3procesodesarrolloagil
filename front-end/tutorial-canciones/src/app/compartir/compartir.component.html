@@ -1,0 +1,51 @@
+<app-header></app-header>
+<div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 offset-lg-2 offset-md-1 float-md-center">
+  <div class="container my-4">
+    <div class="card my-4">
+      <div class="card-header card_color">
+        <div class="row">
+          <div class="col-12 text-center">
+            <label class="fs-4 fw-bold">Compartir {{tipoEntidad}} {{tituloEntidad}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <form class="mx-5 my-3" [formGroup]="compartirForm" (ngSubmit)="compartir(compartirForm.value)">
+          <div class="form-group my-2">
+            <div class="row">
+              <div class="col-12 text-start">
+                <label>Ingrese el correo de los usuarios a los que desea compartir el {{tipoEntidad.toLowerCase()}} separados por coma</label>
+              </div>
+            </div>
+            <div class="row" style="margin-top: 15px;">
+              <div class="col-12">
+                <textarea class="form-control" formControlName="usuarios" style="resize: none;" rows="5"></textarea>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-12">
+                <div class="alert alert-danger my-3"
+                  *ngIf="compartirForm.get('usuarios')?.hasError('required') && compartirForm.get('usuarios')?.touched">
+                  Debe ingresar un usuario para compartir
+                </div>
+                <div class="alert alert-danger my-3" *ngIf="compartirForm.get('usuarios')?.hasError('minlength')">
+                  El usuario debe tener por lo menos un carácter
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card p-4 card_color">
+            <div class="row mt-4">
+              <div class="col-6 text-end">
+                <button class="btn btn-danger" (click)="cancelarCompartir()">Cancelar</button>
+              </div>
+              <div class="col-6 text-start">
+                <button type="submit" class="btn btn-success" [disabled]="!compartirForm.valid">Compartir</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

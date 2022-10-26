@@ -1,0 +1,20 @@
+<div class="">
+  <app-cancion-comentarios-crear (eventoConsultarComentario)="ngOnChanges()" [cancionComentar]="cancionConsultar"></app-cancion-comentarios-crear>
+</div>
+<div class="m-2 ">
+  <div class="">
+    <div class=" py-2 px-4 " *ngFor="let comentario of cancionComentarios">
+      <div class="card-body card_coments row coments_letter_title">
+        <div class="col-md-6 ">
+          <span class=""> {{ comentario.nombre_usuario }} </span>
+        </div>
+        <div class="col-md-6 text-end">
+          <span class=""> {{ comentario.creado_el | date: 'dd/MM/yyyy HH:mm:ss' }} </span>
+        </div>
+      </div>
+      <div class="row table-bordered p-2">
+        <span class=""> {{ comentario.texto }} </span>
+      </div>
+    </div>
+  </div>
+</div>
